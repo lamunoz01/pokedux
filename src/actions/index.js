@@ -1,5 +1,5 @@
 import { getPokemonDetails } from "../api";
-import { SET_LOADING, SET_POKEMONS } from "./types";
+import { SET_FAVORITE, SET_LOADING, SET_POKEMONS } from "./types";
 
 export const setPokemons = (payload) => ({
   type: SET_POKEMONS,
@@ -8,17 +8,20 @@ export const setPokemons = (payload) => ({
 
 export const setLoading = (payload) => ({
   type: SET_LOADING,
-  payload
+  payload,
 });
 
+export const setFavorite = (payload) => ({
+  type: SET_FAVORITE,
+  payload,
+});
 
-//ActionCreator(especial con Thunk) - Lista de pokemones detallados
 export const getPokemonsWithDetails =
   (pokemons = []) =>
   async (dispatch) => {
     const pokemonsDetailed = await Promise.all(
-        pokemons.map((pokemon) => getPokemonDetails(pokemon))
-      );
+      pokemons.map((pokemon) => getPokemonDetails(pokemon))
+    );
 
-      dispatch(setPokemons(pokemonsDetailed));
+    dispatch(setPokemons(pokemonsDetailed));
   };

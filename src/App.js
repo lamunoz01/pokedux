@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { Col } from "antd";
+import { Col, Spin } from "antd";
 import Searcher from "./components/Searcher";
 import PokemonList from "./components/PokemonList";
 import { getPokemon } from "./api";
 import { getPokemonsWithDetails, setLoading } from "./actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Spin } from "antd/lib";
 import logo from "./statics/logo.svg";
 import "./App.css";
 

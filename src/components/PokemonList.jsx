@@ -9,6 +9,9 @@ const PokemonList = ({ pokemons }) => {
             name={pokemon.name}
             key={pokemon.name}
             image={pokemon.sprites.front_default}
+            types={pokemon.types}
+            id={pokemon.id}
+            favorite={pokemon.favorite}
           />
         );
       })}
@@ -17,7 +20,7 @@ const PokemonList = ({ pokemons }) => {
 };
 
 PokemonList.defaultProps = {
-  pokemons: Array(10).fill(""), //Creara un arreglo de 10 posiciones donde cada posición se llena con el valor '' Es decir ['','','','','','','','','','']
+  pokemons: Array(10).fill(''), //Creara un arreglo de 10 posiciones donde cada posición se llena con el valor '' Es decir ['','','','','','','','','','']
 };
 
 export default PokemonList;
