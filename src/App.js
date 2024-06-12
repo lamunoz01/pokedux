@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Col } from "antd";
 import Searcher from "./components/Searcher";
 import PokemonList from "./components/PokemonList";
@@ -18,7 +18,6 @@ function App() {
       const pokemonsRes = await getPokemon();
       dispatch(setPokemons(pokemonsRes));
     };
-
     fetchPokemons();
   }, []);
 
