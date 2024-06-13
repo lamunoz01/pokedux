@@ -1,8 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getPokemon, getPokemonDetails } from "../api";
+import { setLoading } from "../slices/uiSlice";
 
 const initialState = {
   pokemons: [],
 };
+
+export const fetchPokemonsWithDetails = createAsyncThunk(
+  "data/fetchPokemonsWithDetails",
+  async (_, { dispatch }) => {
+    dispatch(setLoading(true));
+    const pokemonsRes = await getPokemon();
+    const pokemonsDetailed = await Promise.all(
+      pokemonsRes.map((pokemon) => getPokemonDetails(pokemon))
+    );
+    dispatch(setPokemons(pokemonsDetailed));
+    dispatch(setLoading(false));
+  }
+);
 
 export const dataSlice = createSlice({
   name: "data", //Nombre del slice
@@ -29,7 +44,7 @@ export const dataSlice = createSlice({
 });
 
 //Exportamos actions desestructurados del pokemonSlice en su propiedad action
-export const {setFavorite, setPokemons} = dataSlice.actions;
+export const { setFavorite, setPokemons } = dataSlice.actions;
 console.log(dataSlice);
 
 //Exportamos los reducers
