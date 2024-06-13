@@ -1,9 +1,8 @@
 import { fromJS } from "immutable";
-import { SET_FAVORITE, SET_LOADING, SET_POKEMONS } from "../actions/types";
+import { SET_FAVORITE, SET_POKEMONS } from "../actions/types";
 //Estado inicial
 const initialState = fromJS({
   pokemons: [],
-  loading: false,
 });
 
 //Función pura
@@ -32,8 +31,6 @@ export const pokemonsReducer = (state = initialState, action) => {
         ["pokemons", currentPokemonIndex, "favorite"],
         !isFavorite
       );
-    case SET_LOADING:
-      return state.setIn(["loading"], action.payload);
     default:
       return state;
   }
